@@ -11,10 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+// Auth Routes
 Auth::routes();
 
+// Landing page
+Route::get('/', function () {
+    return view('landing.welcome');
+});
+
+// Home page
 Route::get('/home', 'HomeController@index');
