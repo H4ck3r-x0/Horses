@@ -14,10 +14,6 @@
 // Auth Routes
 Auth::routes();
 
-// Landing page
-Route::get('/', function () {
-    return view('landing.welcome');
-});
 
 // Home page
-Route::get('/home', 'HomeController@index');
+Route::get('/', 'HomeController@index');
