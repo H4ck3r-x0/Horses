@@ -26,4 +26,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     *
+     * This user has many ads.
+     */
+    public function ad()
+    {
+      return $this->hasMany('App\Ad');
+    }
 }
