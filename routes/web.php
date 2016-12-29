@@ -17,3 +17,12 @@ Auth::routes();
 
 // Home page
 Route::get('/', 'HomeController@index');
+
+
+
+// Ads Routing
+Route::group(['namespace' => 'Ads', 'prefix' => 'ads'], function () {
+  # All ads route
+  Route::get('all', 'AdsController@index');
+
+});
