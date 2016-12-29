@@ -25,4 +25,14 @@ class HomeController extends Controller
     {
         return view('home.home');
     }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+     public function create()
+     {
+       return view('Ads.create');
+     }
 }
