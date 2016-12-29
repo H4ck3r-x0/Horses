@@ -14,6 +14,6 @@ class AdsController extends Controller
    */
     public function index()
     {
-      return view('ads.index');
+      return view('Ads.index');
     }
 }
