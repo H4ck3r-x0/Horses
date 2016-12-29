@@ -16,4 +16,14 @@ class AdsController extends Controller
     {
       return view('Ads.index');
     }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+     public function create()
+     {
+       return view('Ads.create');
+     }
 }
