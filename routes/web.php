@@ -25,4 +25,7 @@ Route::group(['namespace' => 'Ads', 'prefix' => 'ads'], function () {
   # All ads route
   Route::get('all', 'AdsController@index');
 
+  # Create an Advertisement
+  Route::get('create', 'AdsController@create');
+
 });
