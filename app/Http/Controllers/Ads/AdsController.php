@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Ads;
 
+use App\Ad;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class AdsController extends Controller
 {
@@ -18,7 +21,7 @@ class AdsController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * create a new ad.
      *
      * @return \Illuminate\Http\Response
      */
@@ -26,4 +29,32 @@ class AdsController extends Controller
      {
        return view('Ads.create');
      }
+
+
+     /**
+      * store the new ad to the database.
+      *
+      * @return \Illuminate\Http\Response
+      */
+      public function store(Request $request)
+      {
+            $this->validate($request, [
+              'title' => 'required|unique:ads|max:255',
+              'description' => 'required',
+              'location' => 'required',
+            ]);
+      }
+
+
+      /**
+       * Ad Media.
+       *
+       * @return \Illuminate\Http\Response
+       */
+       public function media()
+       {
+         return view('Ads.createStep2');
+       }
+
+
 }
