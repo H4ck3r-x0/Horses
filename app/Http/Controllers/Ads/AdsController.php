@@ -57,4 +57,15 @@ class AdsController extends Controller
        }
 
 
+      /**
+       * Ad stor Media.
+       *
+       * @return \Illuminate\Http\Response
+       */
+       public function storeMedia(Request $request)
+       {
+         dd( $request->file('file'));
+       }
+
+
 }
