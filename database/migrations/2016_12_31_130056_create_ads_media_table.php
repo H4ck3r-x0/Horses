@@ -15,7 +15,7 @@ class CreateAdsMediaTable extends Migration
     {
         Schema::create('ads_media', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('media_path');
+            $table->string('media');
             $table->integer('ad_id')->unsigned();
             $table->foreign('ad_id')
                   ->references('id')->on('ads')
