@@ -11,6 +11,7 @@
                   <h3>Choose a Photo for your advertisement.</h3>
                     <form id="dropzoneID" class="form-horizontal dropzone" role="form" method="POST" action="{{ route('storeMedia') }}">
                         {{ csrf_field() }}
+                        <input type="hidden" name="ad_id" value="{{ $ad_id }}">
                     </form>
                     <button id="submit-all" class="btn btn-primary">Submit all files</button>
                 </div>
@@ -21,18 +22,23 @@
     <script src="/js/dropzone.js"></script>
     <!-- Scripts -->
     <script>
-      var cleanFilename = function (name) {
-        var randomh= Math.random().toString(36).substr(2, 9);
-        name = name.replace(/^.*[\\\/]([^\\\/]*)$/i,"$1");
-        name = name.replace(/\s/g,"");
-        name = name.toLowerCase();
-        name = name.trim();
-        return randomh + name;
-      };
+
       Dropzone.options.dropzoneID = {
+        autoProcessQueue: false,
+        uploadMultiple: true,
         maxFilesize: 2,
         addRemoveLinks: true,
-        renameFilename: cleanFilename,
+        parallelUploads: 10,
+        init: function () {
+            var submitButton = document.querySelector("#submit-all");
+            myDropzone = this;
+            submitButton.addEventListener("click", function () {
+                myDropzone.processQueue();
+            });
+            this.on("success", function(file){
+                console.log(file.xhr.response);
+            });
+          }
       };
 
     </script>
