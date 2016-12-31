@@ -14,4 +14,14 @@ class Ad extends Model
     {
       return $this->belongsTo('App\User');
     }
+
+  /**
+   *
+   * This ad belongs to a user.
+   */
+    public function adMedia()
+    {
+      return $this->hasMany('App\AdMedia');
+    }
+
 }
