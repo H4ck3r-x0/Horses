@@ -34,11 +34,11 @@ Route::group(['namespace' => 'Ads', 'prefix' => 'ads'], function () {
         ->middleware('auth');
 
   # show upload media to an Advertisement
-  Route::get('media', 'AdsController@media')
+  Route::get('media/{ad_id}', 'AdsController@media')
         ->name('AdMedia')
         ->middleware('auth');
 
-  # show upload media to an Advertisement
+  # store upload media to an Advertisement
   Route::post('mediaStore', 'AdsController@storeMedia')
         ->name('storeMedia')
         ->middleware('auth');
