@@ -26,6 +26,21 @@ Route::group(['namespace' => 'Ads', 'prefix' => 'ads'], function () {
   Route::get('all', 'AdsController@index');
 
   # Create an Advertisement
-  Route::get('create', 'AdsController@create');
+  Route::get('create', 'AdsController@create')->middleware('auth');
+
+  # store an Advertisement
+  Route::post('store', 'AdsController@store')
+        ->name('AdStore')
+        ->middleware('auth');
+
+  # show upload media to an Advertisement
+  Route::get('media', 'AdsController@media')
+        ->name('AdMedia')
+        ->middleware('auth');
+
+  # show upload media to an Advertisement
+  Route::post('mediaStore', 'AdsController@storeMedia')
+        ->name('storeMedia')
+        ->middleware('auth');
 
 });
