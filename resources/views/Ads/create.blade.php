@@ -28,7 +28,7 @@
                             <label for="description" class="col-md-4 control-label">Advertisement Description</label>
 
                             <div class="col-md-6">
-                                <textarea id="description" class="form-control" name="description" rows="3" >{{ old('description') }}</textarea>
+                                <textarea id="description" class="form-control" name="description" rows="3" required>{{ old('description') }}</textarea>
                                 @if ($errors->has('description'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('description') }}</strong>
