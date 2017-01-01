@@ -19,7 +19,8 @@ class AdsController extends Controller
    */
     public function index()
     {
-      return view('Ads.index');
+      $ads = Ad::with('adMedia', 'user')->get();
+      return view('Ads.index', compact('ads'));
     }
 
     /**
@@ -27,7 +28,7 @@ class AdsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-     public function create()
+     public function createAd()
      {
        return view('Ads.create');
      }
@@ -38,7 +39,7 @@ class AdsController extends Controller
       *
       * @return \Illuminate\Http\Response
       */
-      public function store(Request $request)
+      public function storeAd(Request $request)
       {
             $this->validate($request, [
               'title' => 'required|max:255',
@@ -76,7 +77,7 @@ class AdsController extends Controller
        */
        public function storeMedia(Request $request)
        {
-
+         
          if($request->hasFile('file'))
          {
            // get all files from the request.
@@ -86,7 +87,7 @@ class AdsController extends Controller
            //Loop through the files array.
            foreach($files as $file)
            {
-             $path = $file->store('ads/media');
+             $path = $file->store('/ads/media');
              array_push($media, $path);
            }
            $serialize_media = serialize($media);
