@@ -26,11 +26,11 @@ Route::group(['namespace' => 'Ads', 'prefix' => 'ads'], function () {
   Route::get('all', 'AdsController@index');
 
   # Create an Advertisement
-  Route::get('create', 'AdsController@create')->middleware('auth');
+  Route::get('create', 'AdsController@createAd')->middleware('auth');
 
   # store an Advertisement
-  Route::post('store', 'AdsController@store')
-        ->name('AdStore')
+  Route::post('store', 'AdsController@storeAd')
+        ->name('storeAd')
         ->middleware('auth');
 
   # show upload media to an Advertisement
@@ -39,8 +39,25 @@ Route::group(['namespace' => 'Ads', 'prefix' => 'ads'], function () {
         ->middleware('auth');
 
   # store upload media to an Advertisement
-  Route::post('mediaStore', 'AdsController@storeMedia')
+  Route::post('storeMedia', 'AdsController@storeMedia')
         ->name('storeMedia')
         ->middleware('auth');
 
+});
+
+
+
+Route::get('ads/media/{filename}', function ($filename)
+{
+    $path = storage_path() . '/' . $filename;
+
+    if(!File::exists($path)) abort(404);
+
+    $file = File::get($path);
+    $type = File::mimeType($path);
+
+    $response = Response::make($file, 200);
+    $response->header("Content-Type", $type);
+
+    return $response;
 });
