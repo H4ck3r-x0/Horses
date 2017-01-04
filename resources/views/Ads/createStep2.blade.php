@@ -9,7 +9,7 @@
                 <div class="panel-heading">Add Media to your Advertisement</div>
                 <div class="panel-body">
                   <h3>Choose a Photo for your advertisement.</h3>
-                    <form id="dropzoneID" class="form-horizontal dropzone" role="form" method="POST" action="{{ route('storeMedia') }}">
+                    <form id="dropzoneID" class="form-horizontal dropzone" role="form" method="POST" action="{{ route('storeMedia') }}" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <input type="hidden" name="ad_id" value="{{ $ad_id }}">
                     </form>
