@@ -10,14 +10,15 @@
             <div class="media">
               <div class="media-left media-middle">
                 @foreach ($ad->adMedia as $media)
-                  @foreach (unserialize($media->media) as $image)
-
-                    <a href="#">
-                      <img class="media-object" src="{{ asset($image) }}" alt="...">
-                    </a>
+                  @foreach (unserialize($media->media) as $key => $image)
+                    @if ($key > 0)
+                      <a href="#">
+                        <img class="media-object img-thumbnail img-responsive" width="200" src="{{ asset('storage/' . $image) }}" alt="">
+                      </a>
+                      @break
+                    @endif
                   @endforeach
                 @endforeach
-
               </div>
               <div class="media-body">
                 <h4 class="media-heading">{{ $ad->title }}</h4>
