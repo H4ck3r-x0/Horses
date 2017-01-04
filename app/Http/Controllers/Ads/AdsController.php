@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Ads;
 
 use Auth;
+use Image;
 use App\Ad;
 use App\User;
 use App\AdMedia;
@@ -77,7 +78,7 @@ class AdsController extends Controller
        */
        public function storeMedia(Request $request)
        {
-         
+
          if($request->hasFile('file'))
          {
            // get all files from the request.
@@ -87,7 +88,13 @@ class AdsController extends Controller
            //Loop through the files array.
            foreach($files as $file)
            {
-             $path = $file->store('/ads/media');
+             $path = $file->store('ads/media');
+             $img = Image::make(public_path('storage/'. $path));
+             $img->resize(null, 300, function ($constraint) {
+               $constraint->aspectRatio();
+             });
+             $img->save();
+             //$media_name = explode('/', $path)[1];
              array_push($media, $path);
            }
            $serialize_media = serialize($media);
