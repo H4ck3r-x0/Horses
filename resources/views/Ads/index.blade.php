@@ -12,7 +12,7 @@
                 @foreach ($ad->adMedia as $media)
                   @foreach (unserialize($media->media) as $key => $image)
                     @if ($key > 0)
-                      <a href="#">
+                      <a href="{{ route('showSingleAd', $ad->slug) }}">
                         <img class="media-object img-thumbnail img-responsive" width="200" src="{{ asset('storage/' . $image) }}" alt="">
                       </a>
                       @break
