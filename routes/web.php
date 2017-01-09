@@ -28,6 +28,9 @@ Route::group(['namespace' => 'Ads', 'prefix' => 'ads'], function () {
   # Create an Advertisement
   Route::get('create', 'AdsController@createAd')->middleware('auth');
 
+  # show single ad route
+  Route::get('/{slug}', 'AdsController@showAd')->name('showSingleAd');
+
   # store an Advertisement
   Route::post('store', 'AdsController@storeAd')
         ->name('storeAd')
@@ -42,5 +45,5 @@ Route::group(['namespace' => 'Ads', 'prefix' => 'ads'], function () {
   Route::post('storeMedia', 'AdsController@storeMedia')
         ->name('storeMedia')
         ->middleware('auth');
-        
+
 });
