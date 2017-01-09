@@ -34,6 +34,17 @@ class AdsController extends Controller
        return view('Ads.create');
      }
 
+     /**
+      * Show single ad.
+      *
+      * @return \Illuminate\Http\Response
+      */
+       public function showAd($slug)
+       {
+         $ad = Ad::with('adMedia', 'user')->where('slug', $slug)->first();
+         return view('Ads.show', compact('ad'));
+       }
+
 
      /**
       * store the new ad to the database.
@@ -52,6 +63,7 @@ class AdsController extends Controller
             $ad->title = $request->title;
             $ad->description = $request->description;
             $ad->location = $request->location;
+            $ad->slug = str_slug($ad->title, '-');
             $ad->user()->associate($user);
             $ad->save();
             return redirect()->route('AdMedia', ['ad_id' => $ad->id]);
@@ -90,7 +102,7 @@ class AdsController extends Controller
            {
              $path = $file->store('ads/media');
              $img = Image::make(public_path('storage/'. $path));
-             $img->resize(null, 300, function ($constraint) {
+             $img->resize(null, 500, function ($constraint) {
                $constraint->aspectRatio();
              });
              $img->save();
