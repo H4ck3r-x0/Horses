@@ -1,12 +1,11 @@
-<!-- Button trigger modal -->
-
-<div class="row" style="margin: 3px;">
+<div class="row">
+  <div class="panel-heading">Photos</div>
   @foreach ($ad->adMedia as $media)
     @foreach (unserialize($media->media) as $key => $image)
-     <div class="col-md-4">
-       <div class="thumbnail">
-         <a data-toggle="modal" href="#media-{{ $key }}" href="#media-{{ $key }}">
-           <img src="{{ asset('storage/' . $image) }}" alt="Lights" style="width:100%">
+     <div class="col-md-4" style="min-height:111px;">
+       <div class="thumbnail" >
+         <a data-toggle="modal" href="#media-{{ $key }}">
+           <img src="{{ asset('storage/' . $image) }}" class="img-responsive">
          </a>
        </div>
      </div>
