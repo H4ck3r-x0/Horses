@@ -15,11 +15,10 @@
       <div class="panel panel-default">
         <div class="panel-heading">Advertisements Media</div>
         <div class="panel-body">
+          @include('Ads.partials.mediaSlide')
         </div>
-        @include('Ads.partials.mediaSlide')
       </div>
     </div>
   </div>
 </div>
-
 @endsection
